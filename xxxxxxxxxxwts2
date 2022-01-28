@@ -4,7 +4,7 @@
 ]]
 
 -- // Dependencies
-local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/libaan151/libaan151/main/jen!"))()
+local Aiming = loadstring(game:HttpGet(""))()
 
 -- // Services
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
