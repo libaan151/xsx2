@@ -1,36 +1,27 @@
-@@ -0,0 +1,36 @@
 --[[
     Information:
-    - Da Hood (https://www.roblox.com/games/2788229376/)
+    - Base Battles! (https://www.roblox.com/games/5326405001/)
 ]]
 
 -- // Dependencies
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/libaan151/libaan151/main/jen!"))()
 
--- // Disable Team Check
+-- // Services
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
+-- // Vars
+local LocalPlayer = Players.LocalPlayer
+local Libraries = ReplicatedStorage.Libraries
+local Global = require(Libraries.Global)
+local Teams = Global.Teams
+
+-- // Team Check
 local AimingIgnored = Aiming.Ignored
-AimingIgnored.TeamCheck(false)
-
-local AimingSettings = Aiming.Settings
-AimingSettings.Ignored.IgnoreLocalTeam = false
-
--- // Downed Check
-local AimingChecks = Aiming.Checks
-local AimingUtilities = Aiming.Utilities
-function AimingChecks.Custom(Player)
-    -- // Check if downed
-    local Character = AimingUtilities.Character(Player)
-    local KOd = Character:WaitForChild("BodyEffects")["K.O"].Value
-    local Grabbed = Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil
-
-    -- // Check B
-    if (KOd or Grabbed) then
-        return false
-    end
-
+function AimingIgnored.IsIgnoredTeam(Player)
     -- //
-    return true
+    return (Teams[LocalPlayer] == Teams[Player])
 end
 
--- // Return
+-- //
 return Aiming 
